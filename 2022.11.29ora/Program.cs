@@ -13,6 +13,7 @@ namespace _2022._11._29ora
         {
             int[] tomb = new int[] { 4, 2, 9, 1, 7, 5, 1, 3};
 
+            //egyszerű cserés
             /*
             for (int i = 0; i < tomb.Length - 1; i++)
             {
@@ -104,6 +105,42 @@ namespace _2022._11._29ora
                 tomb[j + 1] = temp;
             }
             */
+
+            //minimumkiválasztásos keresés
+
+            /*
+            for (int i = 0; i < tomb.Length; i++)
+            {
+                int min = i;
+                for (int j = i+1; j < tomb.Length; j++)
+                {
+                    if (tomb[min] > tomb[j])
+                    {
+                        min = j;
+                    }
+                }
+                int temp= tomb[i];
+                tomb[i] = tomb[min];
+                tomb[min] = temp;
+            }
+            */
+
+            //maximumkiválasztásos rendezés
+
+            for (int i = tomb.Length-1; i > 0; i--)
+            {
+                int max = 0;
+                for (int j = 0; j < i; j++)
+                {
+                    if (tomb[max] < tomb[j])
+                    {
+                        max = j;
+                    }
+                }
+                int temp = tomb[max];
+                tomb[max] = tomb[i];
+                tomb[i] = temp;
+            }
 
             foreach (var item in tomb)
             {
