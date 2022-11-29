@@ -43,6 +43,7 @@ namespace _2022._11._29ora
             }
 
 
+
             foreach (var item in tomb)
             {
                 Console.Write($"{item} ");
