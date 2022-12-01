@@ -4,20 +4,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 
 namespace _2022._11._29ora
 {
     class Program
     {
+        static List<int> tomb = new List<int>();
         static void Main(string[] args)
         {
-            int[] tomb = new int[] { 4, 2, 9, 1, 7, 5, 1, 3};
+            Console.WriteLine(
+                "[1] Egyszerű cserés rendezés\n"+
+                "[2] Buborék rendezés\n"+
+                "[3] Fejlesztett buborék rendezés\n"+
+                "[4] Beszúrásos rendezés\n"+
+                "[5] Fejlesztett beszúrásos rendezés\n"+
+                "[6] Minimum kereséses rendezés\n"+
+                "[7] Maximum kereséses rendezés"
+                );
 
-            //egyszerű cserés
-            /*
-            for (int i = 0; i < tomb.Length - 1; i++)
+            Console.Write("Választás: ");
+            int valasz= Convert.ToInt32(Console.ReadLine());
+
+            BeOlvasas();
+
+            switch (valasz)
             {
-                for (int j = i+1; j < tomb.Length; j++)
+                case 1:
+                    EgyszeruCseresRendezes();
+                    break;
+                case 2:
+                    BuborekRendezes();
+                    break ;
+                case 3:
+                    TovabbFejlesztettBuborekRendezes();
+                    break;
+
+                case 4:
+                    BeszuroRendezes();
+                    break;
+
+                case 5:
+                    TovabbFejlesztettBeszuroRendezes();
+                    break;
+
+                case 6:
+                    MinimumKivalasztasosRendezes();
+                    break;
+                case 7:
+                    MaximumKivalasztasosRendezes();
+                    break;
+
+                default:
+                    Console.WriteLine($"{valasz}: Nincs ilyen lehtőség");
+                    break;
+            }
+            KiIras();
+
+
+
+            Console.ReadKey();
+        }
+        static void EgyszeruCseresRendezes()
+        { 
+            for (int i = 0; i < tomb.Count - 1; i++)
+            {
+                for (int j = i+1; j < tomb.Count; j++)
                 {
                     if (tomb[i]>tomb[j])
                     {
@@ -27,14 +81,11 @@ namespace _2022._11._29ora
                     }
                 }
             }
-            */
+        }
 
-
-
-            //buborék rendezés
-
-            /*
-            for (int i = tomb.Length; i > 0 ; i--)
+        static void BuborekRendezes() 
+        {
+            for (int i = tomb.Count; i > 0 ; i--)
             {
                 for (int j = 0; j < i-1; j++)
                 {
@@ -46,24 +97,23 @@ namespace _2022._11._29ora
                     }
                 }
             }
-            */
+        }
 
-            //órai vége
-
-            //tovább fejlesztett buborék
-
-            /*
-            int i = tomb.Length;
+        static void TovabbFejlesztettBuborekRendezes()
+        {
+            int i = tomb.Count-1;
+            int csere;
+            int temp;
 
             while (i>=1)
             {
-                int csere = -1;
+                csere = -1;
 
-                for (int j = 0; j < i-1; j++)
+                for (int j = 0; j < i; j++)
                 {
                     if (tomb[j] > tomb[j+1])
                     {
-                        int temp = tomb[j];
+                        temp = tomb[j];
                         tomb[j] = tomb[j + 1];
                         tomb[j + 1] = temp;
                         csere = j;
@@ -71,11 +121,11 @@ namespace _2022._11._29ora
                 }
                 i = csere;
             }
+        }
 
-        */
-            //beszúró
-            /*
-            for (int i = 0; i < tomb.Length; i++)
+        static void BeszuroRendezes()
+        {
+            for (int i = 0; i < tomb.Count; i++)
             {
                 int j = i - 1;
                 while (j>=0 && tomb[j] > tomb[j+1])
@@ -87,11 +137,11 @@ namespace _2022._11._29ora
 
                 }
             }
-            */
+        }
 
-            //továbbfejlesztett beszúró
-            /*
-            for (int i = 1; i < tomb.Length; i++)
+        static void TovabbFejlesztettBeszuroRendezes()
+        {
+            for (int i = 1; i < tomb.Count; i++)
             {
                 int j = i - 1;
                 int temp = tomb[i];
@@ -104,15 +154,14 @@ namespace _2022._11._29ora
                 }
                 tomb[j + 1] = temp;
             }
-            */
+        }
 
-            //minimumkiválasztásos keresés
-
-            /*
-            for (int i = 0; i < tomb.Length; i++)
+        static void MinimumKivalasztasosRendezes()
+        {
+            for (int i = 0; i < tomb.Count; i++)
             {
                 int min = i;
-                for (int j = i+1; j < tomb.Length; j++)
+                for (int j = i+1; j < tomb.Count; j++)
                 {
                     if (tomb[min] > tomb[j])
                     {
@@ -123,11 +172,10 @@ namespace _2022._11._29ora
                 tomb[i] = tomb[min];
                 tomb[min] = temp;
             }
-            */
+        }
 
-            //maximumkiválasztásos rendezés
-
-            for (int i = tomb.Length-1; i > 0; i--)
+        static void MaximumKivalasztasosRendezes() { 
+            for (int i = tomb.Count-1; i > 0; i--)
             {
                 int max = 0;
                 for (int j = 0; j < i; j++)
@@ -142,12 +190,28 @@ namespace _2022._11._29ora
                 tomb[i] = temp;
             }
 
+        }
+
+        static void KiIras()
+        {
             foreach (var item in tomb)
             {
                 Console.Write($"{item} ");
             }
 
-            Console.ReadKey();
         }
+        
+        static void BeOlvasas()
+        {
+            StreamReader be = new StreamReader("szamok.txt");
+
+            while (!be.EndOfStream)
+            {
+                tomb.Add(Convert.ToInt32(be.ReadLine()));
+                
+            }
+            be.Close();
+        }  
+
     }
 }
