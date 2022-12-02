@@ -101,7 +101,7 @@ namespace _2022._11._29ora
 
         static void TovabbFejlesztettBuborekRendezes()
         {
-            int i = tomb.Count-1;
+            int i = tomb.Count;
             int csere;
             int temp;
 
@@ -116,7 +116,7 @@ namespace _2022._11._29ora
                         temp = tomb[j];
                         tomb[j] = tomb[j + 1];
                         tomb[j + 1] = temp;
-                        csere = j;
+                        csere = j+1;
                     }
                 }
                 i = csere;
