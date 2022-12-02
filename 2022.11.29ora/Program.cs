@@ -30,6 +30,7 @@ namespace _2022._11._29ora
 
             BeOlvasas();
 
+
             switch (valasz)
             {
                 case 1:
@@ -39,9 +40,7 @@ namespace _2022._11._29ora
                     BuborekRendezes();
                     break ;
                 case 3:
-                    ora.Restart();
                     TovabbFejlesztettBuborekRendezes();
-                    ora.Stop();
                     break;
 
                 case 4:
@@ -63,9 +62,8 @@ namespace _2022._11._29ora
                     Console.WriteLine($"{valasz}: Nincs ilyen lehtőség");
                     break;
             }
-            KiIras();
-            Console.WriteLine(ora.Elapsed);
 
+            KiIras();
 
 
             Console.ReadKey();
