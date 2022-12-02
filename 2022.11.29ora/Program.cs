@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 
 namespace _2022._11._29ora
 {
@@ -15,6 +14,7 @@ namespace _2022._11._29ora
         static List<int> tomb = new List<int>();
         static void Main(string[] args)
         {
+            Stopwatch ora = new Stopwatch();
             Console.WriteLine(
                 "[1] Egyszerű cserés rendezés\n"+
                 "[2] Buborék rendezés\n"+
@@ -39,7 +39,9 @@ namespace _2022._11._29ora
                     BuborekRendezes();
                     break ;
                 case 3:
+                    ora.Restart();
                     TovabbFejlesztettBuborekRendezes();
+                    ora.Stop();
                     break;
 
                 case 4:
@@ -62,6 +64,7 @@ namespace _2022._11._29ora
                     break;
             }
             KiIras();
+            Console.WriteLine(ora.Elapsed);
 
 
 
@@ -109,7 +112,7 @@ namespace _2022._11._29ora
             {
                 csere = -1;
 
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < i-1; j++)
                 {
                     if (tomb[j] > tomb[j+1])
                     {
