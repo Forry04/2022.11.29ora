@@ -117,7 +117,7 @@ namespace _2022._11._29ora
                         temp = tomb[j];
                         tomb[j] = tomb[j + 1];
                         tomb[j + 1] = temp;
-                        csere = j+1;
+                        csere = j;
                     }
                 }
                 i = csere;
