@@ -176,7 +176,7 @@ namespace _2022._11._29ora
         }
 
         static void MaximumKivalasztasosRendezes() { 
-            for (int i = tomb.Count; i > 0; i--)
+            for (int i = tomb.Count-1; i > 0; i--)
             {
                 int max = 0;
                 for (int j = 0; j < i; j++)
