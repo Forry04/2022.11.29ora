@@ -126,7 +126,7 @@ namespace _2022._11._29ora
 
         static void BeszuroRendezes()
         {
-            for (int i = 0; i < tomb.Count; i++)
+            for (int i = 1; i < tomb.Count; i++)
             {
                 int j = i - 1;
                 while (j>=0 && tomb[j] > tomb[j+1])
