@@ -159,7 +159,7 @@ namespace _2022._11._29ora
 
         static void MinimumKivalasztasosRendezes()
         {
-            for (int i = 0; i < tomb.Count; i++)
+            for (int i = 0; i < tomb.Count-1; i++)
             {
                 int min = i;
                 for (int j = i+1; j < tomb.Count; j++)
