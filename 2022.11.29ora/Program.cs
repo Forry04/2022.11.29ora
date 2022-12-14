@@ -14,7 +14,7 @@ namespace _2022._11._29ora
         static List<int> tomb = new List<int>();
         static void Main(string[] args)
         {
-            Stopwatch ora = new Stopwatch();
+
             Console.WriteLine(
                 "[1] Egyszerű cserés rendezés\n"+
                 "[2] Buborék rendezés\n"+
